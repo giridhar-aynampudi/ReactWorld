@@ -14,10 +14,8 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography className={classes.typographyStyles}>
-          My ebay
-          <AddShoppingCartIcon />
-        </Typography>
+        <Typography className={classes.typographyStyles}>My ebay</Typography>
+        <AddShoppingCartIcon />
       </Toolbar>
     </AppBar>
   );
