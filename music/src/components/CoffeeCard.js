@@ -5,7 +5,10 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
+import CardHeader from "@material-ui/core/CardHeader";
+import { Avatar, IconButton } from "@material-ui/core";
+import ShareIcon from "@material-ui/icons/Share";
+import CardMedia from "@material-ui/core/CardMedia";
 const useStyles = makeStyles({
   bullet: {
     display: "inline-block",
@@ -20,34 +23,32 @@ const useStyles = makeStyles({
   },
 });
 
-const CoffeeCard = () => {
+const CoffeeCard = (props) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
+  const { avatarSrc, title, desc, subtitle, imgSrc } = props;
 
   return (
     <Card>
+      <CardHeader
+        avatar={<Avatar src={avatarSrc}></Avatar>}
+        action={
+          <IconButton aria-label="settings">
+            <ShareIcon />
+          </IconButton>
+        }
+        title={title}
+        subheader={subtitle}
+      />
+      <CardMedia style={{ height: "150px" }} image={imgSrc} />
       <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+          {desc}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">BUY NOW</Button>
+        <Button size="small">OFFER</Button>
       </CardActions>
     </Card>
   );
