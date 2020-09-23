@@ -12,7 +12,7 @@ class App extends Component {
   async componentDidMount() {
     const fetchedData = await fetchData();
     this.setState({ data: fetchedData });
-    // console.log(this.state);
+    console.log(this.state);
   }
   render() {
     const data = this.state;
