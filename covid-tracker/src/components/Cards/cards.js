@@ -4,11 +4,7 @@ import styles from "./cards.module.css";
 import CountUp from "react-countup";
 import cx from "classnames";
 
-const Cards = ({
-  data: {
-    data: { confirmed, deaths, lastUpdate, recovered },
-  },
-}) => {
+const Cards = ({ data: { confirmed, deaths, lastUpdate, recovered } }) => {
   //   console.log(confirmed);
   if (!confirmed) {
     return "Loading........";
