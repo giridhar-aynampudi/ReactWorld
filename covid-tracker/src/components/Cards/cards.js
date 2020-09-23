@@ -9,7 +9,7 @@ const Cards = ({
     data: { confirmed, deaths, lastUpdate, recovered },
   },
 }) => {
-  console.log(confirmed);
+  //   console.log(confirmed);
   if (!confirmed) {
     return "Loading........";
   }

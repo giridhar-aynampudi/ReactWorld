@@ -18,3 +18,17 @@ export const fetchData = async () => {
     console.log("there's error: something is wrong with the api");
   }
 };
+export const fetchDailyData = async () => {
+  try {
+    const { data } = await axios.get(`${url}/daily`);
+    const modifiedData = data.map((dailyData) => ({
+      confirmed: dailyData.confirmed.total,
+      deaths: dailyData.deaths.total,
+      date: dailyData.reportDate,
+    }));
+
+    return modifiedData;
+  } catch (error) {
+    console.log("there's error;something is wrong with the api");
+  }
+};
