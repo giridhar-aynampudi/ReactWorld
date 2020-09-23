@@ -32,3 +32,15 @@ export const fetchDailyData = async () => {
     console.log("there's error;something is wrong with the api");
   }
 };
+
+export const fetchCountries = async () => {
+  try {
+    const {
+      data: { countries },
+    } = await axios.get(`${url}/countries`);
+    // console.log(countries);
+    return countries.map((country) => country.name);
+  } catch (error) {
+    console.log("there's error; something is wrong with the countries api");
+  }
+};
