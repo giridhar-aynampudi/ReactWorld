@@ -20,4 +20,11 @@ router.get("/name", (req, res) => {
     .catch((e) => console.log("error:", e));
 });
 
+router.post("/save", (req, res) => {
+  console.log("Data body:", req.body);
+  res.json({
+    msg: "Data received by server",
+  });
+});
+
 module.exports = router;
