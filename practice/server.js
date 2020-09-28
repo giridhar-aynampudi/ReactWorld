@@ -6,15 +6,18 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-//HTTP request logger
-app.use(morgan("tiny"));
+const routes = require("./routes/api");
 
-app.get("/api/name", (req, res) => {
-  const data = {
-    username: "giridhar",
-    age: 23,
-  };
-  res.json(data);
+mongoose.connect("mongodb://localhost/practice", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
+mongoose.connection.on("connected", () => {
+  console.log("Mongoose is connected!!");
+});
+
+//HTTP request logger
+app.use(morgan("tiny"));
+app.use("/api", routes);
 app.listen(PORT, console.log(`Server is listening at ${PORT}`));
