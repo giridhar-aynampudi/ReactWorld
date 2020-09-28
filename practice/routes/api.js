@@ -22,8 +22,17 @@ router.get("/name", (req, res) => {
 
 router.post("/save", (req, res) => {
   console.log("Data body:", req.body);
-  res.json({
-    msg: "Data received by server",
+  const data = req.body;
+
+  const newBlogPost = new BlogPost(data);
+  newBlogPost.save((e) => {
+    if (e) {
+      res.send(500).json({ msg: "Internal server error" });
+      return;
+    }
+    return res.json({
+      msg: "Data received by server",
+    });
   });
 });
 

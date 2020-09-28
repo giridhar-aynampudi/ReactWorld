@@ -6,14 +6,9 @@ class App extends React.Component {
     body: "",
   };
 
-  handleChange = (event) => {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    this.setState({
-      [name]: value,
-    });
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
 
   submit = (event) => {
@@ -30,10 +25,18 @@ class App extends React.Component {
     })
       .then(() => {
         console.log("Data is sent to server");
+        this.resetuserInputs();
       })
       .catch(() => {
         console.log("internal server error");
       });
+  };
+
+  resetuserInputs = () => {
+    this.setState({
+      title: "",
+      body: "",
+    });
   };
 
   render() {
