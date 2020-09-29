@@ -6,8 +6,8 @@ router.get("/test", (req, res) => {
   testModel
     .find({})
     .then((data) => {
-      console.log(data);
-      // res.send(data)
+      console.log("db data:", data);
+      res.send(data);
     })
     .catch((e) => console.log("DB error", e));
 });
