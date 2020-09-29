@@ -29,7 +29,7 @@ class Test extends React.Component {
         console.log("data is sent to server");
       })
       .catch(() => {
-        console.log("internal server error");
+        console.log("internal client-server error");
       });
   };
   render() {

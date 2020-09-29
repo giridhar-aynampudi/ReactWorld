@@ -6,8 +6,6 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use("/api", routes);
-
 mongoose.connect("mongodb://localhost/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -22,4 +20,5 @@ app.use(express.urlencoded({ extended: false }));
 
 //HTTP request logger
 app.use(morgan("tiny"));
+app.use("/api", routes);
 app.listen(PORT, console.log(`Server is listening at ${PORT}`));
