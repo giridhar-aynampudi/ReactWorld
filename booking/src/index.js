@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import Test from "./components/test";
 import Calender from "./components/calender";
 
 const App = () => {
@@ -12,4 +12,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(<Test />, document.querySelector("#root"));
