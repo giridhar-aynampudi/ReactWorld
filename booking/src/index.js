@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Test from "./components/test";
-import Calender from "./components/calender";
+import MaterialUIPickers from "./components/MaterialUIPickers";
+// import Test from "./components/test";
+// import Calender from "./components/calender";
+import Vendor from "./components/vendor";
 
 const App = () => {
   return (
     <div>
       Hello World!
-      <Calender />
+      {/* <Calender /> */}
+      <Vendor />
+      {/* <MaterialUIPickers /> */}
     </div>
   );
 };
 
-ReactDOM.render(<Test />, document.querySelector("#root"));
+ReactDOM.render(<App />, document.querySelector("#root"));
