@@ -31,4 +31,11 @@ router.post("/save", async (req, res) => {
   //   });
 });
 
+router.post("/saveEvent", (req, res) => {
+  console.log("data body:", req.body);
+  res.json({
+    msg: "data received in server ",
+  });
+});
+
 module.exports = router;

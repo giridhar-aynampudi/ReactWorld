@@ -8,7 +8,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import Axios from "axios";
+import axios from "axios";
 
 class Vendor extends React.Component {
   state = {
@@ -24,8 +24,8 @@ class Vendor extends React.Component {
     //   name: target.name,
     //   location: target.location,
     // });
-    const { name, location } = target;
-    this.setState({ [name]: target.value });
+    const { name, value } = target;
+    this.setState({ [name]: value });
   };
   handleDateChange = (date) => {
     this.setState({
@@ -34,18 +34,41 @@ class Vendor extends React.Component {
   };
   submit = (event) => {
     event.preventDefault();
-    alert(`Button submit successful ${this.state.selectedDate}`);
-    //       Axios.post("/dateTime").then((response) => {
-
-    //       })
+    console.log("submit state:", this.state);
+    // alert(`Button submit successful ${this.state.selectedDate}`);
+    const payload = {
+      name: this.state.name,
+      location: this.state.location,
+      dateTime: this.state.selectedDate,
+    };
+    axios({
+      url: "/api/saveEvent",
+      method: "POST",
+      data: payload,
+    })
+      .then(() => {
+        console.log("The data is sent to server");
+        this.resetUserInputs();
+      })
+      .catch(() => {
+        console.log("internal error at client");
+      });
+  };
+  resetUserInputs = () => {
+    this.setState({
+      name: "",
+      location: "",
+      selectedDate: new Date(),
+    });
   };
   render() {
-    console.log(this.state);
+    console.log("render state:", this.state);
     return (
       <div>
         <form onSubmit={this.submit}>
           <TextField
             value={this.state.name}
+            name="name"
             id="standard-basic"
             label="Event name"
             onChange={this.handleChange}
@@ -53,6 +76,7 @@ class Vendor extends React.Component {
           <TextField
             value={this.state.location}
             id="standard-basic"
+            name="location"
             label="Event location"
             onChange={this.handleChange}
           />
