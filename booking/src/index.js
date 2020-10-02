@@ -4,7 +4,7 @@ import MaterialUIPickers from "./components/MaterialUIPickers";
 // import Test from "./components/test";
 // import Calender from "./components/calender";
 import Vendor from "./components/vendor";
-
+import RainbowDatePicker from "./components/rainbowDatePicker";
 const App = () => {
   return (
     <div>
@@ -12,6 +12,7 @@ const App = () => {
       {/* <Calender /> */}
       <Vendor />
       {/* <MaterialUIPickers /> */}
+      {/* <RainbowDatePicker /> */}
     </div>
   );
 };

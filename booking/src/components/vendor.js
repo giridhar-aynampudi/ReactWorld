@@ -2,19 +2,23 @@ import "date-fns";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 // import { makeStyles } from "@material-ui/core/styles";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+// import {
+//   MuiPickersUtilsProvider,
+//   KeyboardTimePicker,
+//   KeyboardDatePicker,
+// } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import axios from "axios";
+import { DateTimePicker } from "react-rainbow-components";
+const containerStyles = {
+  maxWidth: 200,
+};
 
 class Vendor extends React.Component {
   state = {
     name: "",
     location: "",
-    selectedDate: new Date(),
+    // selectedDate: new Date(),
     startTime: new Date(),
     endTime: new Date(),
   };
@@ -23,21 +27,21 @@ class Vendor extends React.Component {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
-  handleDateChange = (day) => {
-    this.setState({
-      selectedDate: day,
-    });
-  };
-  handleStartTime = (startTime) => {
-    this.setState({
-      startTime: startTime,
-    });
-  };
-  handleEndTime = (endTime) => {
-    this.setState({
-      endTime: endTime,
-    });
-  };
+  // handleDateChange = (day) => {
+  //   this.setState({
+  //     selectedDate: day,
+  //   });
+  // };
+  // handleStartTime = (startTime) => {
+  //   this.setState({
+  //     startTime: startTime,
+  //   });
+  // };
+  // handleEndTime = (endTime) => {
+  //   this.setState({
+  //     endTime: endTime,
+  //   });
+  // };
   submit = (event) => {
     event.preventDefault();
     console.log("submit state:", this.state);
@@ -89,7 +93,7 @@ class Vendor extends React.Component {
             label="Event location"
             onChange={this.handleChange}
           />
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               margin="normal"
               id="date-picker-dialog"
@@ -123,7 +127,25 @@ class Vendor extends React.Component {
                 "aria-label": "change time",
               }}
             />
-          </MuiPickersUtilsProvider>
+          </MuiPickersUtilsProvider>*/}
+          <div
+            className="rainbow-align-content_center rainbow-m-vertical_large rainbow-p-horizontal_small rainbow-m_auto"
+            style={containerStyles}
+          >
+            <DateTimePicker
+              required
+              value={this.state.startTime}
+              label="Event Start Time"
+              onChange={(value) => this.setState({ startTime: value })}
+            />
+            <DateTimePicker
+              required
+              value={this.state.endTime}
+              label="Event End time"
+              onChange={(value) => this.setState({ endTime: value })}
+            />
+          </div>
+
           <button>Submit</button>
         </form>
       </div>
