@@ -1,15 +1,9 @@
 import "date-fns";
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-// import { makeStyles } from "@material-ui/core/styles";
-// import {
-//   MuiPickersUtilsProvider,
-//   KeyboardTimePicker,
-//   KeyboardDatePicker,
-// } from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
 import axios from "axios";
 import { DateTimePicker } from "react-rainbow-components";
+
 const containerStyles = {
   maxWidth: 200,
 };
@@ -21,27 +15,13 @@ class Vendor extends React.Component {
     // selectedDate: new Date(),
     startTime: new Date(),
     endTime: new Date(),
+    duration: 30,
   };
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
-  // handleDateChange = (day) => {
-  //   this.setState({
-  //     selectedDate: day,
-  //   });
-  // };
-  // handleStartTime = (startTime) => {
-  //   this.setState({
-  //     startTime: startTime,
-  //   });
-  // };
-  // handleEndTime = (endTime) => {
-  //   this.setState({
-  //     endTime: endTime,
-  //   });
-  // };
   submit = (event) => {
     event.preventDefault();
     console.log("submit state:", this.state);
@@ -51,6 +31,7 @@ class Vendor extends React.Component {
       dateTime: this.state.selectedDate,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
+      duration: this.state.duration,
     };
     axios({
       url: "/api/saveEvent",
@@ -72,6 +53,7 @@ class Vendor extends React.Component {
       selectedDate: new Date(),
       startTime: new Date(),
       endTime: new Date(),
+      duration: "",
     });
   };
   render() {
@@ -85,7 +67,8 @@ class Vendor extends React.Component {
             id="standard-basic"
             label="Event name"
             onChange={this.handleChange}
-          />
+          />{" "}
+          <br />
           <TextField
             value={this.state.location}
             id="standard-basic"
@@ -93,41 +76,6 @@ class Vendor extends React.Component {
             label="Event location"
             onChange={this.handleChange}
           />
-          {/* <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              margin="normal"
-              id="date-picker-dialog"
-              label="Date picker dialog"
-              format="MM/dd/yyyy"
-              value={this.state.selectedDate}
-              onChange={this.handleDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
-            />
-            <KeyboardTimePicker
-              margin="normal"
-              id="startTime"
-              name="startTime"
-              label="Start Time "
-              value={this.state.startTime}
-              onChange={this.handleStartTime}
-              KeyboardButtonProps={{
-                "aria-label": "change time",
-              }}
-            />
-            <KeyboardTimePicker
-              margin="normal"
-              id="endTime"
-              name="endTime"
-              label="End Time "
-              value={this.state.endTime}
-              onChange={this.handleEndTime}
-              KeyboardButtonProps={{
-                "aria-label": "change time",
-              }}
-            />
-          </MuiPickersUtilsProvider>*/}
           <div
             className="rainbow-align-content_center rainbow-m-vertical_large rainbow-p-horizontal_small rainbow-m_auto"
             style={containerStyles}
@@ -145,7 +93,14 @@ class Vendor extends React.Component {
               onChange={(value) => this.setState({ endTime: value })}
             />
           </div>
-
+          <TextField
+            value={this.state.duration}
+            id="standard-basic"
+            name="duration"
+            label="Event duration"
+            onChange={this.handleChange}
+          />
+          <br />
           <button>Submit</button>
         </form>
       </div>

@@ -8,7 +8,6 @@ import RainbowDatePicker from "./components/rainbowDatePicker";
 const App = () => {
   return (
     <div>
-      Hello World!
       {/* <Calender /> */}
       <Vendor />
       {/* <MaterialUIPickers /> */}
