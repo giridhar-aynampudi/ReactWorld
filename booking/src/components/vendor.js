@@ -15,31 +15,38 @@ class Vendor extends React.Component {
     name: "",
     location: "",
     selectedDate: new Date(),
+    startTime: new Date(),
+    endTime: new Date(),
   };
-  //   const [selectedDate, setSelectedDate] = React.useState();
 
   handleChange = ({ target }) => {
-    // console.log(target.name);
-    // this.setState({
-    //   name: target.name,
-    //   location: target.location,
-    // });
     const { name, value } = target;
     this.setState({ [name]: value });
   };
-  handleDateChange = (date) => {
+  handleDateChange = (day) => {
     this.setState({
-      selectedDate: date,
+      selectedDate: day,
+    });
+  };
+  handleStartTime = (startTime) => {
+    this.setState({
+      startTime: startTime,
+    });
+  };
+  handleEndTime = (endTime) => {
+    this.setState({
+      endTime: endTime,
     });
   };
   submit = (event) => {
     event.preventDefault();
     console.log("submit state:", this.state);
-    // alert(`Button submit successful ${this.state.selectedDate}`);
     const payload = {
       name: this.state.name,
       location: this.state.location,
       dateTime: this.state.selectedDate,
+      startTime: this.state.startTime,
+      endTime: this.state.endTime,
     };
     axios({
       url: "/api/saveEvent",
@@ -59,6 +66,8 @@ class Vendor extends React.Component {
       name: "",
       location: "",
       selectedDate: new Date(),
+      startTime: new Date(),
+      endTime: new Date(),
     });
   };
   render() {
@@ -94,10 +103,22 @@ class Vendor extends React.Component {
             />
             <KeyboardTimePicker
               margin="normal"
-              id="time-picker"
-              label="Time picker"
-              value={this.state.selectedDate}
-              onChange={this.handleDateChange}
+              id="startTime"
+              name="startTime"
+              label="Start Time "
+              value={this.state.startTime}
+              onChange={this.handleStartTime}
+              KeyboardButtonProps={{
+                "aria-label": "change time",
+              }}
+            />
+            <KeyboardTimePicker
+              margin="normal"
+              id="endTime"
+              name="endTime"
+              label="End Time "
+              value={this.state.endTime}
+              onChange={this.handleEndTime}
               KeyboardButtonProps={{
                 "aria-label": "change time",
               }}
